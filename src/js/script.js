@@ -42,3 +42,14 @@ document
 
     alert("Bem-vindo à Camera Nová, " + nome)
 })
+
+let carrinho =
+JSON.parse(localStorage.getItem("carrinho")) || []
+
+let contador =
+document.getElementById("contador")
+
+if(contador){
+
+    contador.innerHTML = carrinho.length
+}

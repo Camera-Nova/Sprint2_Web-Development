@@ -51,3 +51,14 @@ function comprarProduto(nome){
 
     alert(nome + " adicionado ao carrinho")
 }
+
+let carrinho =
+JSON.parse(localStorage.getItem("carrinho")) || []
+
+let contador =
+document.getElementById("contador")
+
+if(contador){
+
+    contador.innerHTML = carrinho.length
+}

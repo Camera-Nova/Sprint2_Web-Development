@@ -66,3 +66,11 @@ document
         location.reload()
     }
 })
+
+let contador =
+document.getElementById("contador")
+
+if(contador){
+
+    contador.innerHTML = carrinho.length
+}
