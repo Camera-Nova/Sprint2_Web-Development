@@ -67,10 +67,10 @@ document
     }
 })
 
-let contador =
-document.getElementById("contador")
-
-if(contador){
-
-    contador.innerHTML = carrinho.length
-}
+ let contador =
+ document.getElementById("contador")
+ 
+ if(contador){
+ 
+     contador.innerHTML = carrinho.length
+ }
