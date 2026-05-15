@@ -3,9 +3,9 @@ let carrinho = JSON.parse(localStorage.getItem("carrinho")) || []
 let areaCarrinho = document.getElementById("itensCarrinho")
 
 let precos = {
-    "Action Figure Iron Man": 299,
-    "Capacete do Thor": 199,
-    "Escudo Capitão América": 399
+    "Homem de Ferro": 299,
+    "Thor": 199,
+    "Capitão América": 399
 }
 
 let total = 0

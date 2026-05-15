@@ -7,7 +7,7 @@ let produtos = [
     },
 
     {
-        nome: " Thor",
+        nome: "Thor",
         preco: 199,
         imagem: "./src/img/thor.jpg"
     },
