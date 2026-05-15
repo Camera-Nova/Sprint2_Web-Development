@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial;
+    background-color: #f4f4f4;
+}
+
+header{
+    background-color: #111;
+    color: white;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.banner{
+    width: 100%;
+    height: 400px;
+
+    overflow: hidden;
+}
+
+.banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.apresentacao{
+    text-align: center;
+    padding: 50px;
+}
+
+button{
+    margin-top: 20px;
+    padding: 10px 20px;
+
+    border: none;
+    background-color: black;
+    color: white;
+
+    cursor: pointer;
+}
