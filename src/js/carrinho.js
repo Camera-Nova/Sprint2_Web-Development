@@ -41,3 +41,28 @@ function removerProduto(index){
 
     location.reload()
 }
+
+document
+.getElementById("finalizarCompra")
+.addEventListener("click", function(){
+
+    if(carrinho.length === 0){
+
+        alert("Seu carrinho está vazio")
+
+        return
+    }
+
+    let confirmar = confirm(
+        "Deseja finalizar a compra?"
+    )
+
+    if(confirmar){
+
+        alert("Compra realizada com sucesso!")
+
+        localStorage.removeItem("carrinho")
+
+        location.reload()
+    }
+})

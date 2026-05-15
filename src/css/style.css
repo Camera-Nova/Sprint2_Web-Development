@@ -180,3 +180,19 @@ input{
 
     width: 100%;
 }
+
+.finalizar-area{
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 50px;
+}
+
+#finalizarCompra{
+
+    font-size: 20px;
+
+    padding: 15px 40px;
+}
