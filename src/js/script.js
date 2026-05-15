@@ -1,12 +1,16 @@
 let imagens = [
-    "src/img/d5.webp",
-    "src/img/d2.jpeg",
-    "src/img/d4.jpg"
+    "./src/img/d2.jpeg",
+    "./src/img/d4.jpg",
+    "./src/img/d5.webp"
 ]
 
 let index = 0
 
-function trocarImagem(){
+let slide = document.getElementById("slide")
+
+document
+.getElementById("proximo")
+.addEventListener("click", function(){
 
     index++
 
@@ -14,10 +18,21 @@ function trocarImagem(){
         index = 0
     }
 
-    document.getElementById("slide").src = imagens[index]
-}
+    slide.src = imagens[index]
+})
 
-setInterval(trocarImagem, 3000)
+document
+.getElementById("anterior")
+.addEventListener("click", function(){
+
+    index--
+
+    if(index < 0){
+        index = imagens.length - 1
+    }
+
+    slide.src = imagens[index]
+})
 
 document
 .getElementById("botaoBoasVindas")
@@ -25,5 +40,5 @@ document
 
     let nome = prompt("Digite seu nome")
 
-    alert("Bem-vindo à TechStore, " + nome)
+    alert("Bem-vindo à Camera Nová, " + nome)
 })
