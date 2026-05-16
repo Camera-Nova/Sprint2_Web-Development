@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JOVI Scan — Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="page-dashboard">
+
+  <!-- Cabeçalho -->
+  <header class="topbar">
+    <div class="logo">JOVI<span>Scan</span></div>
+    <nav class="topbar-nav">
+      <span id="saudacao" class="saudacao">Olá!</span>
+      <button id="btn-sair" class="btn-secundario">Sair</button>
+    </nav>
+  </header>
+
+  <main class="dashboard">
+
+    <!-- Seção: Slideshow das features -->
+    <section class="secao">
+      <h2>Recursos do app de câmera</h2>
+      <p class="descricao">
+        Navegue pelas melhorias propostas no modo de digitalização de documentos.
+      </p>
+
+      <div class="slideshow" id="slideshow">
+        <button class="slide-btn slide-prev" id="btn-prev" aria-label="Anterior">‹</button>
+
+        <div class="slide-viewport">
+          <div class="slide-track" id="slide-track">
+            <!-- Slides serão injetados via JS dinamicamente -->
+          </div>
+        </div>
+
+        <button class="slide-btn slide-next" id="btn-next" aria-label="Próximo">›</button>
+
+        <div class="slide-info">
+          <span id="slide-titulo" class="slide-titulo"></span>
+          <p id="slide-desc" class="slide-desc"></p>
+        </div>
+
+        <div class="slide-dots" id="slide-dots"></div>
+
+        <div class="slide-controles">
+          <button id="btn-autoplay" class="btn-secundario">⏸ Pausar</button>
+          <span id="slide-contador" class="contador">1 / 7</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção: Digitalizar documento -->
+    <section class="secao">
+      <h2>Digitalizar documento</h2>
+      <p class="descricao">
+        Selecione o tipo de digitalização para iniciar uma simulação.
+      </p>
+
+      <div class="grid-acoes">
+        <button class="card-acao" data-tipo="documento">
+          <span class="card-icone">📄</span>
+          <strong>Documento</strong>
+          <small>Folha A4 ou similar</small>
+        </button>
+
+        <button class="card-acao" data-tipo="rg">
+          <span class="card-icone">🪪</span>
+          <strong>RG / CNH</strong>
+          <small>Frente e verso em uma página</small>
+        </button>
+
+        <button class="card-acao" data-tipo="manuscrito">
+          <span class="card-icone">✍️</span>
+          <strong>Manuscrito</strong>
+          <small>OCR de escrita à mão</small>
+        </button>
+
+        <button class="card-acao" data-tipo="traduzir">
+          <span class="card-icone">🌐</span>
+          <strong>Traduzir</strong>
+          <small>Tradução sobreposta</small>
+        </button>
+      </div>
+    </section>
+
+    <!-- Seção: Histórico dinâmico -->
+    <section class="secao">
+      <div class="secao-cabecalho">
+        <h2>Histórico de digitalizações</h2>
+        <button id="btn-limpar-hist" class="btn-secundario">Limpar tudo</button>
+      </div>
+
+      <ul id="lista-historico" class="lista-historico">
+        <!-- Itens serão adicionados/removidos dinamicamente via DOM -->
+      </ul>
+      <p id="hist-vazio" class="hist-vazio">Nenhuma digitalização ainda. Use os botões acima para começar.</p>
+    </section>
+
+  </main>
+
+  <!-- Modal customizado para "prompts" -->
+  <div id="modal-overlay" class="modal-overlay oculto" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <h3 id="modal-titulo">Confirmar</h3>
+      <p id="modal-mensagem"></p>
+      <div id="modal-input-wrapper" class="modal-input-wrapper oculto">
+        <input type="text" id="modal-input" />
+      </div>
+      <div class="modal-acoes">
+        <button id="modal-cancelar" class="btn-secundario">Cancelar</button>
+        <button id="modal-confirmar" class="btn-primario">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

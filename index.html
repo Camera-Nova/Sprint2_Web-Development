@@ -1,44 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camera nová store</title>
-
-    <link rel="stylesheet" href="./src/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JOVI Scan — Login</title>
+  <link rel="stylesheet" href="src/css/style.css" />
 </head>
-<body>
+<body class="page-login">
 
-    <header>
-        <h1>Camera nová</h1>
-
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="login.html">Login</a>
-            <a href="loja.html">Loja</a>
-            <a href="carrinho.html">Carrinho</a>
-        </nav>
+  <main class="login-container">
+    <header class="login-header">
+      <div class="logo">JOVI<span>Scan</span></div>
     </header>
 
-    <main>
+    <form id="form-login" class="card" novalidate>
+      <h1>Acessar conta</h1>
 
-       <section class="banner">
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu.email@jovi.com"
+          autocomplete="email"
+          required
+        />
+        <span class="erro" id="erro-email" aria-live="polite"></span>
+      </div>
 
-    <button id="anterior">
-        ◀
-    </button>
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <div class="campo-senha">
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            placeholder="Mínimo 8 caracteres"
+            autocomplete="current-password"
+            required
+          />
+          <button type="button" id="btn-toggle-senha" class="btn-link" aria-label="Mostrar senha">
+            Mostrar
+          </button>
+        </div>
+        <span class="erro" id="erro-senha" aria-live="polite"></span>
+      </div>
 
-    <img id="slide" src="./" alt="Banner">
+      <div class="campo-inline">
+        <label>
+          <input type="checkbox" id="lembrar" />
+          Lembrar-me
+        </label>
+        <button type="button" id="btn-esqueci" class="btn-link">Esqueci a senha</button>
+      </div>
 
-    <button id="proximo">
-        ▶
-    </button>
+      <button type="submit" id="btn-entrar" class="btn-primario">Entrar</button>
 
-</section>
+      <p class="rodape-form">
+        Não tem conta?
+        <button type="button" id="btn-cadastrar" class="btn-link">Cadastre-se</button>
+      </p>
+    </form>
 
-    </main>
+    <footer class="login-footer">
+      <p>FIAP · Web Development</p>
+      
+    </footer>
+  </main>
 
-    <script src="./src/js/script.js"></script>
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
+  <script src="src/js/login.js"></script>
 </body>
 </html>

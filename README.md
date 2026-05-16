@@ -1,4 +1,4 @@
-|          nome:            |       RM:      |
+|       nome:               |       RM:      |
 |---------------------------|----------------|
 |GIANLUCA ANTONICCI         |     570081     |
 |MATHEUS MARCONDES ARAÚJO   |     573152     |
