@@ -1,18 +1,9 @@
-/* ============================================
-   JOVI Scan — Dashboard
-   Slideshow, eventos DOM, manipulação dinâmica
-   ============================================ */
-
-// ---------- Verificar autenticação ----------
 const sessaoSalva = localStorage.getItem('jovi_sessao') || sessionStorage.getItem('jovi_sessao');
 if (!sessaoSalva) {
-  // Sem sessão: volta pro login
   window.location.href = '../../index.html';
 }
 const sessao = sessaoSalva ? JSON.parse(sessaoSalva) : null;
 
-// ---------- Dados do slideshow ----------
-// Cada slide é uma feature do app de câmera do Projeto Câmera JOVI
 const slides = [
   {
     titulo: 'Remoção automática de sombras',
@@ -159,7 +150,6 @@ const slides = [
   },
 ];
 
-// ---------- Slideshow ----------
 const slideTrack = document.getElementById('slide-track');
 const slideTitulo = document.getElementById('slide-titulo');
 const slideDesc = document.getElementById('slide-desc');
@@ -173,7 +163,6 @@ let slideAtual = 0;
 let autoplayAtivo = true;
 let autoplayId = null;
 
-// Cria os slides dinamicamente no DOM
 function montarSlides() {
   slides.forEach((slide) => {
     const div = document.createElement('div');
@@ -182,7 +171,6 @@ function montarSlides() {
     slideTrack.appendChild(div);
   });
 
-  // Cria os dots
   slides.forEach((_, indice) => {
     const dot = document.createElement('button');
     dot.className = 'dot';
@@ -233,10 +221,9 @@ function pararAutoplay() {
   }
 }
 
-// Eventos do slideshow
 btnPrev.addEventListener('click', () => {
   slideAnterior();
-  if (autoplayAtivo) iniciarAutoplay(); // reinicia o timer
+  if (autoplayAtivo) iniciarAutoplay(); 
 });
 btnNext.addEventListener('click', () => {
   proximoSlide();
@@ -254,15 +241,12 @@ btnAutoplay.addEventListener('click', () => {
   }
 });
 
-// Navegação por teclado
 document.addEventListener('keydown', (e) => {
-  // Ignora se estiver digitando em algum input
   if (document.activeElement.tagName === 'INPUT') return;
   if (e.key === 'ArrowLeft') slideAnterior();
   if (e.key === 'ArrowRight') proximoSlide();
 });
 
-// Pausa autoplay ao passar o mouse
 const slideshow = document.getElementById('slideshow');
 slideshow.addEventListener('mouseenter', () => {
   if (autoplayAtivo) pararAutoplay();
@@ -271,7 +255,6 @@ slideshow.addEventListener('mouseleave', () => {
   if (autoplayAtivo) iniciarAutoplay();
 });
 
-// ---------- Modal customizado (substituto melhor para confirm/prompt) ----------
 const modalOverlay = document.getElementById('modal-overlay');
 const modalTitulo = document.getElementById('modal-titulo');
 const modalMensagem = document.getElementById('modal-mensagem');
@@ -321,7 +304,6 @@ function abrirModal({ titulo, mensagem, comInput = false, valorPadrao = '' }) {
   });
 }
 
-// ---------- Toasts ----------
 function mostrarToast(titulo, mensagem, tipo = 'info', duracao = 3000) {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
@@ -334,7 +316,6 @@ function mostrarToast(titulo, mensagem, tipo = 'info', duracao = 3000) {
   }, duracao);
 }
 
-// ---------- Histórico dinâmico ----------
 const listaHistorico = document.getElementById('lista-historico');
 const histVazio = document.getElementById('hist-vazio');
 const btnLimparHist = document.getElementById('btn-limpar-hist');
@@ -382,7 +363,6 @@ function renderizarItem(item) {
     </div>
   `;
 
-  // Eventos dos botões do item
   li.querySelector('.btn-renomear').addEventListener('click', async () => {
     const novoNome = await abrirModal({
       titulo: 'Renomear digitalização',
@@ -406,7 +386,6 @@ function renderizarItem(item) {
     if (confirmar) {
       historico = historico.filter((h) => h.id !== item.id);
       salvarHistorico();
-      // Animação de saída
       li.style.transition = 'opacity 0.2s, transform 0.2s';
       li.style.opacity = '0';
       li.style.transform = 'translateX(20px)';
@@ -436,7 +415,7 @@ function adicionarAoHistorico(tipo, nome) {
     nome,
     data: new Date().toISOString(),
   };
-  historico.unshift(item); // adiciona no topo
+  historico.unshift(item);
   salvarHistorico();
   listaHistorico.prepend(renderizarItem(item));
   atualizarVisibilidadeHistorico();
@@ -460,7 +439,6 @@ btnLimparHist.addEventListener('click', async () => {
   }
 });
 
-// ---------- Cards de ação (botões para digitalizar) ----------
 const tiposLegiveis = {
   documento: 'Documento',
   rg: 'RG/CNH',
@@ -480,13 +458,12 @@ document.querySelectorAll('.card-acao').forEach((card) => {
       valorPadrao: `${tipoLegivel} ${historico.length + 1}`,
     });
 
-    if (nome === null) return; // cancelou
+    if (nome === null) return; 
     if (!nome.trim()) {
       mostrarToast('Nome inválido', 'O nome não pode estar vazio.', 'erro');
       return;
     }
 
-    // Simulação: efeito visual no card
     card.style.transform = 'scale(0.95)';
     card.disabled = true;
     setTimeout(() => {
@@ -502,7 +479,6 @@ document.querySelectorAll('.card-acao').forEach((card) => {
   });
 });
 
-// ---------- Logout ----------
 const btnSair = document.getElementById('btn-sair');
 btnSair.addEventListener('click', async () => {
   const confirmar = await abrirModal({
@@ -516,9 +492,7 @@ btnSair.addEventListener('click', async () => {
   }
 });
 
-// ---------- Inicialização ----------
 window.addEventListener('DOMContentLoaded', () => {
-  // Saudação personalizada
   if (sessao) {
     document.getElementById('saudacao').textContent = `Olá, ${sessao.nome}!`;
   }

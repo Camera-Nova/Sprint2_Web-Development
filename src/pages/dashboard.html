@@ -8,7 +8,6 @@
 </head>
 <body class="page-dashboard">
 
-  <!-- Cabeçalho -->
   <header class="topbar">
     <div class="logo">JOVI<span>Scan</span></div>
     <nav class="topbar-nav">
@@ -19,7 +18,6 @@
 
   <main class="dashboard">
 
-    <!-- Seção: Slideshow das features -->
     <section class="secao">
       <h2>Recursos do app de câmera</h2>
       <p class="descricao">
@@ -31,7 +29,6 @@
 
         <div class="slide-viewport">
           <div class="slide-track" id="slide-track">
-            <!-- Slides serão injetados via JS dinamicamente -->
           </div>
         </div>
 
@@ -51,7 +48,6 @@
       </div>
     </section>
 
-    <!-- Seção: Digitalizar documento -->
     <section class="secao">
       <h2>Digitalizar documento</h2>
       <p class="descricao">
@@ -85,7 +81,6 @@
       </div>
     </section>
 
-    <!-- Seção: Histórico dinâmico -->
     <section class="secao">
       <div class="secao-cabecalho">
         <h2>Histórico de digitalizações</h2>
@@ -93,14 +88,12 @@
       </div>
 
       <ul id="lista-historico" class="lista-historico">
-        <!-- Itens serão adicionados/removidos dinamicamente via DOM -->
       </ul>
       <p id="hist-vazio" class="hist-vazio">Nenhuma digitalização ainda. Use os botões acima para começar.</p>
     </section>
 
   </main>
 
-  <!-- Modal customizado para "prompts" -->
   <div id="modal-overlay" class="modal-overlay oculto" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
       <h3 id="modal-titulo">Confirmar</h3>
@@ -115,7 +108,6 @@
     </div>
   </div>
 
-  <!-- Toasts -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <script src="../js/dashboard.js"></script>

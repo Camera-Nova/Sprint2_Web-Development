@@ -1,9 +1,3 @@
-/* ============================================
-   JOVI Scan — Login
-   Validação de formulário em JavaScript puro
-   ============================================ */
-
-// ---------- Seletores de elementos do DOM ----------
 const formLogin = document.getElementById('form-login');
 const inputEmail = document.getElementById('email');
 const inputSenha = document.getElementById('senha');
@@ -14,7 +8,6 @@ const btnEsqueci = document.getElementById('btn-esqueci');
 const btnCadastrar = document.getElementById('btn-cadastrar');
 const checkLembrar = document.getElementById('lembrar');
 
-// ---------- Sistema de Toast (alerta customizado) ----------
 function mostrarToast(titulo, mensagem, tipo = 'info', duracao = 3500) {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
@@ -28,9 +21,7 @@ function mostrarToast(titulo, mensagem, tipo = 'info', duracao = 3500) {
   }, duracao);
 }
 
-// ---------- Validações ----------
 function validarEmail(valor) {
-  // Regex razoável para e-mail
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   if (!valor.trim()) return 'E-mail é obrigatório.';
   if (!regex.test(valor)) return 'Formato de e-mail inválido.';
@@ -54,7 +45,6 @@ function exibirErroCampo(input, spanErro, mensagem) {
   }
 }
 
-// ---------- Validação em tempo real (blur) ----------
 inputEmail.addEventListener('blur', () => {
   const erro = validarEmail(inputEmail.value);
   exibirErroCampo(inputEmail, erroEmail, erro);
@@ -65,7 +55,6 @@ inputSenha.addEventListener('blur', () => {
   exibirErroCampo(inputSenha, erroSenha, erro);
 });
 
-// Limpa erros conforme o usuário corrige
 inputEmail.addEventListener('input', () => {
   if (inputEmail.classList.contains('invalido')) {
     exibirErroCampo(inputEmail, erroEmail, '');
@@ -77,7 +66,6 @@ inputSenha.addEventListener('input', () => {
   }
 });
 
-// ---------- Mostrar/ocultar senha ----------
 btnToggleSenha.addEventListener('click', () => {
   if (inputSenha.type === 'password') {
     inputSenha.type = 'text';
@@ -88,9 +76,8 @@ btnToggleSenha.addEventListener('click', () => {
   }
 });
 
-// ---------- Submit do formulário ----------
 formLogin.addEventListener('submit', (evento) => {
-  evento.preventDefault(); // bloqueia envio nativo
+  evento.preventDefault(); 
 
   const erroE = validarEmail(inputEmail.value);
   const erroS = validarSenha(inputSenha.value);
@@ -103,8 +90,6 @@ formLogin.addEventListener('submit', (evento) => {
     return;
   }
 
-  // "Autenticação" simulada — credenciais hard-coded
-  // Em produção, isso iria para o backend.
   const usuariosValidos = [
     { email: 'admin@jovi.com', senha: 'Admin123' },
     { email: 'gian@jovi.com', senha: 'Senha123' },
@@ -124,7 +109,6 @@ formLogin.addEventListener('submit', (evento) => {
     return;
   }
 
-  // Salvar sessão
   const dadosSessao = {
     email: usuario.email,
     nome: usuario.email.split('@')[0],
@@ -132,22 +116,19 @@ formLogin.addEventListener('submit', (evento) => {
     entrouEm: new Date().toISOString(),
   };
 
-  // Usa sessionStorage por padrão; localStorage se "lembrar"
   const armazenamento = checkLembrar.checked ? localStorage : sessionStorage;
   armazenamento.setItem('jovi_sessao', JSON.stringify(dadosSessao));
 
   mostrarToast('Bem-vindo!', 'Login realizado com sucesso.', 'sucesso', 1500);
 
-  // Redireciona após pequeno delay para o toast aparecer
   setTimeout(() => {
     window.location.href = 'src/pages/dashboard.html';
   }, 1000);
 });
 
-// ---------- Botões secundários (prompts/alerts) ----------
 btnEsqueci.addEventListener('click', () => {
   const email = prompt('Digite seu e-mail para recuperar a senha:');
-  if (email === null) return; // usuário cancelou
+  if (email === null) return; 
   if (validarEmail(email)) {
     alert('E-mail inválido. Tente novamente.');
     return;
@@ -167,11 +148,9 @@ btnCadastrar.addEventListener('click', () => {
   }
 });
 
-// ---------- Auto-login se sessão salva ----------
 window.addEventListener('DOMContentLoaded', () => {
   const sessaoSalva = localStorage.getItem('jovi_sessao') || sessionStorage.getItem('jovi_sessao');
   if (sessaoSalva) {
-    // Já autenticado: vai direto para dashboard
     window.location.href = 'src/pages/dashboard.html';
   }
 });
